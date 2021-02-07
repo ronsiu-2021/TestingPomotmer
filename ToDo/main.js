@@ -1,17 +1,26 @@
 // Selectors
 const todoInput = document.querySelector(".todo-input");
 const todoButton = document.querySelector(".todo-button");
-// const todoList = document.querySelector(".todo-list");
-
 const todoContainer = document.querySelector(".todo-container");
 
 /// Event Listeners
 //document.addEventListener("DOMContentLoaded", getTodos);
 
 todoButton.addEventListener("click", addToDo);
-// todoList.addEventListener("click", deleteCheck);
-
 todoContainer.addEventListener("click", deleteCheck);
+
+
+//////// States ////////
+let breakState = false;
+let completedCycles = 2;
+let cycleCount = 6 - completedCycles;
+
+//////// Section for header nav ////////
+const todayDate = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const date = todayDate.toLocaleDateString('en-us', options);
+document.getElementById("date").innerHTML = date;
+
 
 //Functions
 function addToDo (event) {
@@ -27,7 +36,7 @@ function addToDo (event) {
   dragButton.innerHTML = '<i class="fas fa-align-justify"></i>';
   dragButton.classList.add("drag-btn");
   todoDiv.appendChild(dragButton);
-  //Create LI
+  //Create div for holding todo item text
   const todoItem = document.createElement("div");
   todoItem.innerText = todoInput.value;
   todoItem.classList.add("todo-item");
@@ -50,7 +59,6 @@ function addToDo (event) {
   todoDiv.appendChild(trashButton);
 
   //Append to List
-  // todoList.appendChild(todoDiv);
   todoContainer.appendChild(todoDiv);
 
   //clear ToDo input value
@@ -90,12 +98,7 @@ dropzone.addEventListener(
   "dragstart",
   function (event) {
     // event.preventDefault();
-    // store a ref. on the dragged elem
     selectedNode = event.target;
-    // console.log(typeof dragged);
-    // console.log("This is the id " + event.target.id);
-    // make it half transparent
-    // event.target.style.opacity = 0.5;
   },
   false
 );
@@ -107,7 +110,6 @@ dropzone.addEventListener("dragover", (event) => {
 
 dropzone.addEventListener("drop", (event) => {
   event.preventDefault();
-  // console.log(typeof selectedNode);
   dropzone.insertBefore(selectedNode, dropzone.children[selectedNodePos]);
 });
 

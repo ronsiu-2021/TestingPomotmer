@@ -1,11 +1,11 @@
 //////// Default Timer ////////
 
-var sessionMinutes = 2; //default minute
+var sessionMinutes = 25; //default minute
 var sessionSeconds = "00"; //default second
 
 
 // Starting template for the timer
-function template() {
+function template () {
     // Show the element as string especailly for second to show as 00
     document.getElementById("minutes").innerHTML = sessionMinutes;
     document.getElementById("seconds").innerHTML = sessionSeconds;
@@ -14,25 +14,18 @@ function template() {
 
 //////// States ////////
 let breakState = false;
-let cycleCount = 6;
 let completedCycles = 2;
-
+let cycleCount = 6 - completedCycles;
 
 //////// Audio files ////////
 var click_sound = new Audio("click.mp3");
 var bell = new Audio("bell.mp3");
 
 //////// Section for header nav ////////
-var formatedDate = function() {
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var date = new Date();
-    var theDay = date.getDay();
-    console.log(theDay);
-    return returnDate =
-        `${weekday[theDay]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-}
-document.getElementById("date").innerHTML = formatedDate();
+const todayDate = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const date = todayDate.toLocaleDateString('en-us', options);
+document.getElementById("date").innerHTML = date;
 
 
 //////// Section for Cycle count ////////
@@ -58,7 +51,7 @@ cycleText.innerText = "| Completed Cycles: " + completedCycles;
 
 
 //////// Session for Timer countdown ////////
-function start_timer() {
+function start_timer () {
     click_sound.play();
 
     // Change the minutes and seconds to starting time
@@ -75,13 +68,13 @@ function start_timer() {
 
     // Functions
     // Function for minute counter
-    function minutesTimer() {
+    function minutesTimer () {
         sessionMinutes = sessionMinutes - 1;
         document.getElementById("minutes").innerHTML = sessionMinutes;
     }
 
     // Function for second counter
-    function secondsTimer() {
+    function secondsTimer () {
         sessionSeconds = sessionSeconds - 1;
         document.getElementById("seconds").innerHTML = sessionSeconds;
 
@@ -100,7 +93,7 @@ function start_timer() {
     }
 }
 
-function doneMessage() {
+function doneMessage () {
     document.getElementById("done").innerHTML = "Session Completed!! Take a Break";
     document.getElementById("done").classList.add("show_message");
     bell.play();
@@ -108,7 +101,7 @@ function doneMessage() {
 
 /////////////// Section for distracted counter //////////////
 var count = 0;
-document.getElementById('distraction-counter').addEventListener("click", function(event) {
+document.getElementById('distraction-counter').addEventListener("click", function (event) {
     event.preventDefault();
     count++;
     if (count !== 0) {

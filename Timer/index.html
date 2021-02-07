@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- My CSS -->
+        <link rel="stylesheet" href="style.css" />
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/996973c893.js"></script>
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+
+        <title>Pomodoro App</title>
+    </head>
+
+    <body onload="template()">
+        <div class="top-nav">
+            <h2 id="date">Today's date </h2>
+
+            <div id="cycle-count">
+                <span>
+                    <h2 id="completed-cycle" style="display:inline;">
+                        | Not yet completed
+                    </h2>
+                </span>
+            </div>
+
+
+
+
+        </div>
+
+        <div class=" container ">
+            <!-- Heading -->
+            <h1 class=" heading">Pomodoro App</h1>
+
+            <!-- Main Timer -->
+            <div class="container timer">
+                <div class="row">
+                    <div class="col">
+                        <h4 id="minutes"></h4>
+                    </div>
+                    <div class="col">
+                        <h4>:</h4>
+                    </div>
+                    <div class="col">
+                        <h4 id="seconds"></h4>
+                    </div>
+                </div>
+            </div>
+            <!-- Finished Message -->
+            <div class="my-5">
+                <h3 id="done" class="center"></h3>
+            </div>
+
+            <!-- Start Button and reset button-->
+            <div class="container center icons">
+                <button class="btn" onclick="start_timer()">
+                    <i class="material-icons md-48">play_arrow</i>
+                </button>
+                <a href="index.html" class="btn"> <i class="material-icons md-48">replay</i></a>
+
+            </div>
+        </div>
+
+        <button id="distraction-counter" class="btn"> Distraction : 0</button>
+        <script src="main.js"></script>
+    </body>
+
+</html>
